@@ -17,7 +17,7 @@ def flutterVersionCode = localProperties.getProperty("flutter.versionCode") ?: "
 def flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "1.0"
 
 android {
-    namespace = "com.otarductor.app"
+    namespace = "com.otarductor.otarductor_share"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -31,7 +31,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.otarductor.app"
+        applicationId = "com.otarductor.otarductor_share"
         minSdk = 21
         targetSdk = 34
         versionCode = flutterVersionCode.toInteger()

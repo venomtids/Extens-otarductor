@@ -1,5 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.otarductor.app">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Internet: usada para baixar a imagem quando o navegador compartilha
          apenas a URL e para chamar a API publica de traducao. O OCR do ML Kit
