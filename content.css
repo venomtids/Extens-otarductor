@@ -1,0 +1,51 @@
+/* content.css — Estilos injetados nas paginas (mobile-first)
+ * A maior parte da estilizacao critica e aplicada via CSS inline em
+ * content.js para nao depender da ordem de carregamento. Este arquivo
+ * cobre apenas animacoes e refinamentos.
+ */
+
+.otarductor-overlay {
+  animation: otarductor-fade-in 0.16s ease-out;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.otarductor-texto {
+  white-space: pre-wrap;
+  max-width: 100%;
+}
+
+.otarductor-dica {
+  margin-top: 10px;
+  font-size: 11px;
+  opacity: 0.65;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.otarductor-spinner {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 10px;
+  border: 3px solid rgba(255, 255, 255, 0.25);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: otarductor-spin 0.8s linear infinite;
+}
+
+.otarductor-fab:active {
+  transform: scale(0.96);
+}
+
+@keyframes otarductor-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes otarductor-spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes otarductor-spin {
+  to { transform: rotate(360deg); }
+}

@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "Extens Otarductor",
+  "version": "2.0.0",
+  "description": "Intercepta toque longo em imagens no Firefox Android (GeckoView), extrai o texto visual com OCR 100% no dispositivo (Tesseract WASM, sem chave) e sobrepoe a traducao responsiva sobre a imagem.",
+
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+
+  "host_permissions": [
+    "https://api.mymemory.translated.net/*",
+    "http://*/*",
+    "https://*/*"
+  ],
+
+  "background": {
+    "scripts": [
+      "vendor/tesseract/tesseract.min.js",
+      "background.js"
+    ],
+    "service_worker": "background.js"
+  },
+
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'; worker-src 'self' 'wasm-unsafe-eval'; child-src 'self' 'wasm-unsafe-eval';"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "action": {
+    "default_title": "Extens Otarductor",
+    "default_area": "navbar"
+  },
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "extens-otarductor@arena.local",
+      "strict_min_version": "121.0"
+    },
+    "gecko_android": {
+      "strict_min_version": "121.0"
+    }
+  }
+}
