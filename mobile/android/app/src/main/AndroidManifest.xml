@@ -1,0 +1,65 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.otarductor.app">
+
+    <!-- Internet: usada para baixar a imagem quando o navegador compartilha
+         apenas a URL e para chamar a API publica de traducao. O OCR do ML Kit
+         roda 100% no dispositivo e nao precisa de rede. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:label="Otarductor"
+        android:name="${applicationName}"
+        android:icon="@mipmap/ic_launcher">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"/>
+
+            <!-- Lancamento normal do app pelo icone -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+
+            <!-- ====================================================== -->
+            <!-- INTERCEPCAO GLOBAL DE COMPARTILHAMENTO                 -->
+            <!-- Quando o usuario segura uma imagem em QUALQUER navegador -->
+            <!-- e toca em "Compartilhar via Otarductor", este filtro    -->
+            <!-- captura o payload.                                       -->
+            <!-- ====================================================== -->
+
+            <!-- 1) Imagem entregue como arquivo/binario (content://) -->
+            <intent-filter android:label="Traduzir texto da imagem">
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="image/*"/>
+            </intent-filter>
+
+            <!-- 2) URL da imagem entregue como texto/plain. Navegadores
+                 como Chrome e Firefox normalmente compartilham a URL da
+                 imagem quando ela esta aberta isoladamente. -->
+            <intent-filter android:label="Traduzir texto da imagem">
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
+
+        <!-- O FileProvider necessario para receber arquivos temporarios ja e
+             declarado pelo proprio plugin receive_sharing_intent via manifest
+             merge. Nao o redeclare aqui para evitar conflito de authorities. -->
+
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"/>
+    </application>
+</manifest>

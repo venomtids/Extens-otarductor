@@ -1,0 +1,39 @@
+name: otarductor_share
+description: Receptor global de compartilhamento: recebe imagens de qualquer navegador, faz OCR local e traduz o texto.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+  flutter: ">=3.19.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Escuta intents de compartilhamento vindas de navegadores e outros apps.
+  receive_sharing_intent: ^1.6.7
+
+  # OCR 100% no dispositivo (ML Kit do Google). Retorna blocos com
+  # bounding boxes, o que permite sobrepor a traducao exatamente no texto.
+  google_mlkit_text_recognition: ^0.15.0
+
+  # Requisicoes HTTP para a API publica de traducao (MyMemory).
+  http: ^1.2.2
+
+  # Renderizacao eficiente de imagens remotas com cache em disco/memoria.
+  cached_network_image: ^3.4.1
+
+  # Persistencia do idioma de destino selecionado.
+  shared_preferences: ^2.3.2
+
+  # Necessario para gravar o arquivo temporario ao baixar uma URL de imagem.
+  path_provider: ^2.1.4
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
